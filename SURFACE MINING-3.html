@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNIT-3 Quiz</title>
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { max-width:900px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.question { margin:15px 0; text-align:left; }
+button { padding:8px; margin:3px; width:100%; cursor:pointer; }
+.correct { background:#4CAF50; color:white; }
+.wrong { background:#f44336; color:white; }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>📘 UNIT–3: DRILLING & BLASTING</h2>
+<div id="quiz"></div>
+<h3 id="score"></h3>
+</div>
+
+<script>
+
+let questions = [
+
+{q:"Drilling is done for:",o:["Blasting","Excavation","Survey","Transport"],a:0},
+{q:"Drill holes are used to place:",o:["Water","Explosives","Air","Fuel"],a:1},
+{q:"Main drilling mechanism:",o:["Rotation","Percussion","Rotary-percussive","All"],a:3},
+{q:"Rotary drilling is suitable for:",o:["Soft rock","Hard rock","Water","None"],a:0},
+{q:"Percussive drilling is suitable for:",o:["Soft rock","Hard rock","Clay","None"],a:1},
+
+{q:"Drill selection depends on:",o:["Rock type","Hole size","Cost","All"],a:3},
+{q:"Drill rod is used for:",o:["Rotation","Power transmission","Cooling","None"],a:1},
+{q:"Drill bit is used for:",o:["Cutting rock","Holding rod","Transport","None"],a:0},
+{q:"DTH stands for:",o:["Down The Hole","Deep Hole","Drill Hole","None"],a:0},
+{q:"Drill hole diameter depends on:",o:["Explosive","Bench height","Equipment","All"],a:3},
+
+{q:"Drilling cost depends on:",o:["Rock hardness","Bit wear","Time","All"],a:3},
+{q:"Penetration rate increases with:",o:["Hard rock","Soft rock","No change","None"],a:1},
+{q:"Drill alignment should be:",o:["Inclined","Vertical","As per design","Random"],a:2},
+{q:"Drilling accuracy affects:",o:["Blasting","Fragmentation","Cost","All"],a:3},
+{q:"Drill machine types include:",o:["Wagon drill","DTH","Rotary","All"],a:3},
+
+{q:"Dust is harmful because:",o:["Disease","Visibility","Environment","All"],a:3},
+{q:"Dust control is done by:",o:["Water spray","Vacuum","Air","All"],a:3},
+{q:"Silicosis is caused by:",o:["Coal dust","Silica dust","Water","Oil"],a:1},
+{q:"Drill bit types:",o:["Chisel","Cross","Button","All"],a:3},
+{q:"Bit life depends on:",o:["Rock","Operation","Cooling","All"],a:3},
+
+{q:"Bit wear increases in:",o:["Soft","Hard","Water","None"],a:1},
+{q:"Proper lubrication helps:",o:["Increase life","Reduce wear","Improve drilling","All"],a:3},
+{q:"Flushing removes:",o:["Dust","Cuttings","Heat","All"],a:3},
+{q:"Air flushing is used in:",o:["Dry drilling","Wet","Both","None"],a:0},
+{q:"Water flushing helps in:",o:["Dust","Cooling","Cleaning","All"],a:3},
+
+{q:"Explosives are used for:",o:["Breaking rock","Transport","Survey","None"],a:0},
+{q:"Common explosive:",o:["ANFO","Water","Air","Oil"],a:0},
+{q:"ANFO stands for:",o:["Ammonium Nitrate Fuel Oil","Air Nitrogen Fuel Oil","None","All"],a:0},
+{q:"Detonator is used for:",o:["Ignition","Cooling","Transport","None"],a:0},
+{q:"Fuse is used for:",o:["Delay","Ignition","Safety","All"],a:3},
+
+{q:"Booster is used for:",o:["Increase energy","Reduce energy","Transport","None"],a:0},
+{q:"Delay detonators help in:",o:["Sequential blasting","Random","No blasting","None"],a:0},
+{q:"Explosives should be:",o:["Stable","Safe","Powerful","All"],a:3},
+{q:"Cartridge explosives are:",o:["Solid","Liquid","Gas","None"],a:0},
+{q:"Storage is in:",o:["Magazine","Office","House","None"],a:0},
+
+{q:"Blast design includes:",o:["Burden","Spacing","Charge","All"],a:3},
+{q:"Burden is:",o:["Distance between holes","Distance to face","Depth","None"],a:1},
+{q:"Spacing is:",o:["Distance between holes","Depth","Width","None"],a:0},
+{q:"Stemming is:",o:["Explosive","Inert material","Water","None"],a:1},
+{q:"Fragmentation means:",o:["Breaking rock","Transport","Survey","None"],a:0},
+
+{q:"Poor blasting causes:",o:["Oversize","Fly rock","Vibration","All"],a:3},
+{q:"Good blasting gives:",o:["Fragmentation","Less cost","Safety","All"],a:3},
+{q:"Blast efficiency depends on:",o:["Design","Explosive","Drilling","All"],a:3},
+{q:"Overcharging causes:",o:["Fly rock","Vibration","Damage","All"],a:3},
+{q:"Undercharging causes:",o:["Poor breakage","Oversize","Rework","All"],a:3},
+
+{q:"Blasting vibration affects:",o:["Structures","People","Environment","All"],a:3},
+{q:"Fly rock is:",o:["Controlled","Dangerous","Useful","None"],a:1},
+{q:"Safety distance is for:",o:["Protection","Cost","Production","None"],a:0},
+{q:"PPE includes:",o:["Helmet","Gloves","Goggles","All"],a:3},
+{q:"Blasting safety reduces:",o:["Accidents","Risk","Loss","All"],a:3}
+
+];
+let score = 0;
+let quizDiv = document.getElementById("quiz");
+
+questions.forEach((item, index) => {
+ let div = document.createElement("div");
+ div.classList.add("question");
+ div.innerHTML = `<b>${index+1}. ${item.q}</b><br>`;
+ 
+ item.o.forEach((opt,i)=>{
+  let btn=document.createElement("button");
+  btn.innerText=opt;
+  
+  btn.onclick=()=>{
+   if(i===item.a){
+    btn.classList.add("correct");
+    score++;
+   } else {
+    btn.classList.add("wrong");
+   }
+   document.getElementById("score").innerText="Score: "+score;
+  }
+  div.appendChild(btn);
+ });
+ quizDiv.appendChild(div);
+});
+
+// Timer
+let time = 300;
+let timer = setInterval(()=>{
+ time--;
+ document.getElementById("timer").innerText = "Time: " + time + "s";
+ if(time<=0){
+  clearInterval(timer);
+  alert("Time Up! Score: " + score);
+ }
+},1000);
+
+</script>
+
+</body>
+</html>

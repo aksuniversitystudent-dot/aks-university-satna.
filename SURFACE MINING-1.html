@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNIT-1 Quiz</title>
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { max-width:900px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.question { margin:15px 0; text-align:left; }
+button { padding:8px; margin:3px; width:100%; cursor:pointer; }
+.correct { background:#4CAF50; color:white; }
+.wrong { background:#f44336; color:white; }
+#timer { color:red; font-size:18px; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>📘 UNIT–1: INTRODUCTION (50 MCQs)</h2>
+<p id="timer">Time: 300s</p>
+<div id="quiz"></div>
+<h3 id="score"></h3>
+</div>
+
+<script>
+
+let questions = [
+
+{q:"Surface mining is also known as:", o:["Underground mining","Opencast mining","Shaft mining","Drift mining"], a:1},
+{q:"Surface mining is suitable for:", o:["Deep deposits","Shallow deposits","Ocean deposits","None"], a:1},
+{q:"Main advantage of surface mining:", o:["High cost","High recovery","Low safety","Deep mining"], a:1},
+{q:"Limitation of surface mining:", o:["Limited depth","High recovery","Easy operation","Low cost"], a:0},
+{q:"Which is NOT a type of surface mining?", o:["Open pit","Quarrying","Shaft mining","Strip mining"], a:2},
+{q:"Quarrying is mainly used for:", o:["Coal","Stone","Oil","Gas"], a:1},
+{q:"Strip mining is suitable for:", o:["Flat deposits","Vertical deposits","Deep deposits","Irregular deposits"], a:0},
+{q:"Open pit mining is used for:", o:["Deep coal","Metallic ores","Oil","Gas"], a:1},
+{q:"Surface mining has:", o:["Low productivity","High productivity","No production","Medium only"], a:1},
+{q:"Recovery in surface mining is:", o:["Low","High","Zero","Variable"], a:1},
+
+{q:"Surface mining is safer than:", o:["Opencast","Underground","Quarry","None"], a:1},
+{q:"Main environmental issue:", o:["Water","Noise","Land degradation","Air"], a:2},
+{q:"Initial investment:", o:["Low","High","Zero","Medium"], a:1},
+{q:"Depth limit depends on:", o:["Cost","Stripping ratio","Equipment","All"], a:3},
+{q:"Surface mining requires:", o:["Less land","More land","No land","Underground"], a:1},
+
+{q:"Bench height depends on:", o:["Equipment","Rock type","Safety","All"], a:3},
+{q:"Bench width is related to:", o:["Safety","Equipment","Road","All"], a:3},
+{q:"Bench slope is measured in:", o:["Degree","Meter","Kg","Liter"], a:0},
+{q:"Pit slope refers to:", o:["Bench","Overall slope","Road slope","None"], a:1},
+{q:"Safe pit slope depends on:", o:["Rock","Water","Weather","All"], a:3},
+
+{q:"Bench height is generally:", o:["Small","Equipment reach","Random","Zero"], a:1},
+{q:"Wide benches provide:", o:["Less safety","More safety","No effect","Cost"], a:1},
+{q:"Pit depth depends on:", o:["Deposit","Economy","SR","All"], a:3},
+{q:"Mine life depends on:", o:["Production","Reserve","Both","None"], a:2},
+{q:"Annual production depends on:", o:["Market","Equipment","Planning","All"], a:3},
+
+{q:"Mine area depends on:", o:["Deposit","Equipment","Layout","All"], a:3},
+{q:"Slope failure occurs due to:", o:["Water","Weak rock","Overload","All"], a:3},
+{q:"Stability increases with:", o:["Steep","Gentle","Vertical","None"], a:1},
+{q:"Bench formation helps in:", o:["Safety","Production","Stability","All"], a:3},
+{q:"Pit design aims at:", o:["Profit","Cost","Safety","All"], a:3},
+
+{q:"Cut-off grade means:", o:["Minimum grade","Maximum","Average","None"], a:0},
+{q:"Stripping ratio is:", o:["Ore/Waste","Waste/Ore","Ore","Waste"], a:1},
+{q:"Higher SR means:", o:["More profit","Less profit","No change","Zero"], a:1},
+{q:"Economic limit depends on:", o:["SR","Cost","Price","All"], a:3},
+{q:"Cut-off grade increases when:", o:["Cost increases","Price increases","Recovery increases","None"], a:0},
+
+{q:"Lower cut-off grade leads to:", o:["More reserve","Less reserve","No change","None"], a:0},
+{q:"SR affects:", o:["Cost","Profit","Depth","All"], a:3},
+{q:"Economic depth limited by:", o:["Equipment","SR","Cost","All"], a:3},
+{q:"Waste material is called:", o:["Ore","OB","Mineral","Coal"], a:1},
+{q:"OB stands for:", o:["Overburden","Overblock","Overbench","None"], a:0},
+
+{q:"Opening of mine is done by:", o:["Shaft","Trench","Tunnel","All"], a:1},
+{q:"Entry trench is used for:", o:["Machines","Water","Air","None"], a:0},
+{q:"Ramp is:", o:["Vertical","Inclined road","Horizontal","Shaft"], a:1},
+{q:"Trench width depends on:", o:["Equipment","Traffic","Safety","All"], a:3},
+{q:"Trench slope should be:", o:["Steep","Gentle","Vertical","Random"], a:1},
+
+{q:"Bench opening starts with:", o:["Drilling","Trenching","Blasting","Dumping"], a:1},
+{q:"Mine opening location depends on:", o:["Topography","Deposit","Transport","All"], a:3},
+{q:"Trench is generally:", o:["Narrow","Wide","Deep","Wide & deep"], a:3},
+{q:"Entry trench helps in:", o:["Access","Drainage","Transport","All"], a:3},
+{q:"Bench formation is done by:", o:["Excavation","Blasting","Cutting","All"], a:3}
+
+];
+
+let score = 0;
+let quizDiv = document.getElementById("quiz");
+
+questions.forEach((item, index) => {
+ let div = document.createElement("div");
+ div.classList.add("question");
+ div.innerHTML = `<b>${index+1}. ${item.q}</b><br>`;
+ 
+ item.o.forEach((opt,i)=>{
+  let btn=document.createElement("button");
+  btn.innerText=opt;
+  
+  btn.onclick=()=>{
+   if(i===item.a){
+    btn.classList.add("correct");
+    score++;
+   } else {
+    btn.classList.add("wrong");
+   }
+   document.getElementById("score").innerText="Score: "+score;
+  }
+  div.appendChild(btn);
+ });
+ quizDiv.appendChild(div);
+});
+
+// Timer
+let time = 300;
+let timer = setInterval(()=>{
+ time--;
+ document.getElementById("timer").innerText = "Time: " + time + "s";
+ if(time<=0){
+  clearInterval(timer);
+  alert("Time Up! Score: " + score);
+ }
+},1000);
+
+</script>
+
+</body>
+</html>

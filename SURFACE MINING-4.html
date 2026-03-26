@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNIT-4 Quiz</title>
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { max-width:900px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.question { margin:15px 0; text-align:left; }
+button { padding:8px; margin:3px; width:100%; cursor:pointer; }
+.correct { background:#4CAF50; color:white; }
+.wrong { background:#f44336; color:white; }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h2>📘 UNIT–4: EXCAVATION & TRANSPORT</h2>
+<div id="quiz"></div>
+<h3 id="score"></h3>
+</div>
+
+<script>
+
+let questions = [
+
+{q:"Shovel is used for:",o:["Drilling","Loading","Blasting","Survey"],a:1},
+{q:"Dumper is used for:",o:["Loading","Transport","Drilling","Blasting"],a:1},
+{q:"Shovel-dumper used for:",o:["Loading & hauling","Drilling","Survey","None"],a:0},
+{q:"Dragline used for:",o:["Coal cutting","OB removal","Transport","Drilling"],a:1},
+{q:"Surface miner used for:",o:["Continuous cutting","Drilling","Blasting","Transport"],a:0},
+
+{q:"BWE works in:",o:["Hard rock","Continuous","UG","None"],a:1},
+{q:"Dragline works best in:",o:["Flat","Steep","UG","None"],a:0},
+{q:"Equipment selection depends on:",o:["Rock","Production","Cost","All"],a:3},
+{q:"Large equipment gives:",o:["Low","High","No change","None"],a:1},
+{q:"Surface miner reduces:",o:["Blasting","Drilling","Noise","All"],a:3},
+
+{q:"Dragline has:",o:["Short reach","Long reach","None","All"],a:1},
+{q:"Shovel capacity measured in:",o:["Ton","m³","Meter","Kg"],a:1},
+{q:"Bucket capacity affects:",o:["Production","Cost","Time","All"],a:3},
+{q:"Excavation cost depends on:",o:["Equipment","Rock","Fuel","All"],a:3},
+{q:"Continuous mining means:",o:["Stop","No blasting","Continuous","None"],a:2},
+
+{q:"Transport system is used for:",o:["Loading","Hauling","Drilling","None"],a:1},
+{q:"Common transport:",o:["Dumper","Conveyor","Rail","All"],a:3},
+{q:"Dumper is flexible because:",o:["Fixed","Free movement","Slow","None"],a:1},
+{q:"Conveyor used for:",o:["Continuous","Intermittent","Manual","None"],a:0},
+{q:"Rail transport is:",o:["Flexible","Fixed","Random","None"],a:1},
+
+{q:"Transport selection depends on:",o:["Distance","Cost","Production","All"],a:3},
+{q:"Long distance uses:",o:["Dumper","Conveyor","Manual","None"],a:1},
+{q:"Short distance uses:",o:["Conveyor","Dumper","Rail","None"],a:1},
+{q:"Conveyor economical for:",o:["Long","Short","None","Random"],a:0},
+{q:"Transport cost depends on:",o:["Distance","Fuel","Load","All"],a:3},
+
+{q:"Truck dispatch system:",o:["Manual","Computerized","Random","None"],a:1},
+{q:"Dispatch improves:",o:["Efficiency","Time","Utilization","All"],a:3},
+{q:"Idle time should be:",o:["High","Low","Medium","None"],a:1},
+{q:"Matching reduces:",o:["Delay","Cost","Idle","All"],a:3},
+{q:"Transport cycle includes:",o:["Loading","Hauling","Dumping","All"],a:3},
+
+{q:"Haul road used for:",o:["Walking","Vehicle","Drilling","None"],a:1},
+{q:"Road width depends on:",o:["Vehicle","Traffic","Safety","All"],a:3},
+{q:"Road gradient:",o:["Steep","Gentle","Vertical","None"],a:1},
+{q:"Good road reduces:",o:["Fuel","Tire wear","Time","All"],a:3},
+{q:"Poor road causes:",o:["Accidents","Delay","Cost","All"],a:3},
+
+{q:"Maintenance includes:",o:["Grading","Watering","Repair","All"],a:3},
+{q:"Drainage important for:",o:["Road life","Safety","Stability","All"],a:3},
+{q:"Road camber is for:",o:["Drainage","Speed","Cost","None"],a:0},
+{q:"Turning radius depends on:",o:["Vehicle","Speed","Safety","All"],a:3},
+{q:"Good road improves:",o:["Productivity","Safety","Efficiency","All"],a:3},
+
+{q:"Mine layout is:",o:["Design","Equipment","Transport","None"],a:0},
+{q:"Layout depends on:",o:["Deposit","Equipment","Topography","All"],a:3},
+{q:"Types of layout:",o:["Straight","Circular","Zigzag","All"],a:3},
+{q:"Good layout ensures:",o:["Efficiency","Safety","Cost reduction","All"],a:3},
+{q:"Poor layout causes:",o:["Delay","Loss","Confusion","All"],a:3},
+
+{q:"Layout problems include:",o:["Congestion","Delay","Poor access","All"],a:3},
+{q:"Solution of problem:",o:["Redesign","Planning","Equipment","All"],a:3},
+{q:"Traffic congestion due to:",o:["Planning","Narrow road","High traffic","All"],a:3},
+{q:"Layout optimization improves:",o:["Productivity","Safety","Cost","All"],a:3},
+{q:"Proper layout leads to:",o:["Smooth operation","Efficiency","Safety","All"],a:3}
+
+];
+let score = 0;
+let quizDiv = document.getElementById("quiz");
+
+questions.forEach((item, index) => {
+ let div = document.createElement("div");
+ div.classList.add("question");
+ div.innerHTML = `<b>${index+1}. ${item.q}</b><br>`;
+ 
+ item.o.forEach((opt,i)=>{
+  let btn=document.createElement("button");
+  btn.innerText=opt;
+  
+  btn.onclick=()=>{
+   if(i===item.a){
+    btn.classList.add("correct");
+    score++;
+   } else {
+    btn.classList.add("wrong");
+   }
+   document.getElementById("score").innerText="Score: "+score;
+  }
+  div.appendChild(btn);
+ });
+ quizDiv.appendChild(div);
+});
+
+// Timer
+let time = 300;
+let timer = setInterval(()=>{
+ time--;
+ document.getElementById("timer").innerText = "Time: " + time + "s";
+ if(time<=0){
+  clearInterval(timer);
+  alert("Time Up! Score: " + score);
+ }
+},1000);
+
+</script>
+
+</body>
+</html>

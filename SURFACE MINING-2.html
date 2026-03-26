@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNIT-2 Quiz</title>
+<style>
+body { font-family: Arial; background:#f4f4f4; text-align:center; }
+.container { max-width:900px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.question { margin:15px 0; text-align:left; }
+button { padding:8px; margin:3px; width:100%; cursor:pointer; }
+.correct { background:#4CAF50; color:white; }
+.wrong { background:#f44336; color:white; }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>📘 UNIT–2: SURFACE MINE PLANNING</h2>
+<div id="quiz"></div>
+<h3 id="score"></h3>
+</div>
+
+<script>
+let questions = [
+{q:"Bench height depends on:",o:["Equipment","Rock","Safety","All"],a:3},
+{q:"Bench width should be:",o:["Less","Equal","More","Zero"],a:2},
+{q:"Bench slope depends on:",o:["Rock","Weather","Water","All"],a:3},
+{q:"Purpose of bench formation:",o:["Safety","Production","Stability","All"],a:3},
+{q:"Narrow bench causes:",o:["More safety","Less safety","No effect","More production"],a:1},
+
+{q:"Wide bench provides:",o:["Safety","Space","Movement","All"],a:3},
+{q:"Bench design affects:",o:["Cost","Production","Safety","All"],a:3},
+{q:"Bench height is:",o:["High","Digging height","Random","Low"],a:1},
+{q:"Slope stability increases with:",o:["Steep","Gentle","Vertical","None"],a:1},
+{q:"Bench design is part of:",o:["Planning","Operation","Transport","None"],a:0},
+
+{q:"Multi-bench system used for:",o:["Deep","Shallow","UG","None"],a:0},
+{q:"Bench failure occurs due to:",o:["Weak rock","Water","Design","All"],a:3},
+{q:"Bench width includes:",o:["Road","Berm","Drainage","All"],a:3},
+{q:"Proper design reduces:",o:["Cost","Risk","Time","All"],a:3},
+{q:"Parameter depends on:",o:["Equipment","Geology","Safety","All"],a:3},
+
+{q:"Equipment selection depends on:",o:["Production","Rock","Cost","All"],a:3},
+{q:"Hard rock requires:",o:["Light","Heavy","None","Manual"],a:1},
+{q:"Soft rock requires:",o:["Blasting","Ripper","None","All"],a:1},
+{q:"Dragline is used for:",o:["OB","Coal","Drilling","Transport"],a:0},
+{q:"Shovel-dumper used for:",o:["Loading","Drilling","Blasting","Survey"],a:0},
+
+{q:"BWE used in:",o:["Hard rock","Continuous","UG","None"],a:1},
+{q:"Rippers used for:",o:["Hard","Soft-medium","Water","None"],a:1},
+{q:"Equipment size depends on:",o:["Production","Bench","Cost","All"],a:3},
+{q:"Large equipment gives:",o:["Low","High","No change","Less safety"],a:1},
+{q:"Equipment affects:",o:["Cost","Efficiency","Productivity","All"],a:3},
+
+{q:"Matching factor relates to:",o:["Compatibility","Rock","Bench","None"],a:0},
+{q:"Dumpers depend on:",o:["Shovel","Cycle","Distance","All"],a:3},
+{q:"Continuous mining uses:",o:["Shovel","BWE","Dumper","None"],a:1},
+{q:"Dragline works best in:",o:["Flat","Steep","UG","None"],a:0},
+{q:"Selection is part of:",o:["Planning","Blasting","Survey","None"],a:0},
+
+{q:"Mine scheduling is:",o:["Planning","Drilling","Blasting","Transport"],a:0},
+{q:"Production scheduling:",o:["Output","Cost","Survey","None"],a:0},
+{q:"Operation scheduling:",o:["Equipment","Timing","Sequence","All"],a:3},
+{q:"Good scheduling gives:",o:["Delay","Efficiency","Loss","None"],a:1},
+{q:"Poor scheduling:",o:["Idle","Loss","Delay","All"],a:3},
+
+{q:"Production rate depends on:",o:["Equipment","Labor","Planning","All"],a:3},
+{q:"Cycle time includes:",o:["Loading","Hauling","Dumping","All"],a:3},
+{q:"Efficiency increases:",o:["Good planning","Poor","None","All"],a:0},
+{q:"Idle time should be:",o:["High","Low","Zero","Medium"],a:1},
+{q:"Scheduling improves:",o:["Production","Cost","Time","All"],a:3},
+
+{q:"OB removal is:",o:["Waste","Ore","Drilling","None"],a:0},
+{q:"OB dumped in:",o:["Pit","Dump","River","UG"],a:1},
+{q:"Dump design depends on:",o:["Material","Slope","Stability","All"],a:3},
+{q:"External dump:",o:["Inside","Outside","UG","None"],a:1},
+{q:"Internal dump:",o:["Outside","Inside","River","None"],a:1},
+
+{q:"Casting used for:",o:["OB","Coal","Drilling","Survey"],a:0},
+{q:"Dragline casting:",o:["Efficient","Slow","Costly","None"],a:0},
+{q:"Dump slope:",o:["Steep","Gentle","Vertical","Random"],a:1},
+{q:"Poor dump causes:",o:["Failure","Landslide","Risk","All"],a:3},
+{q:"Waste disposal is part of:",o:["Planning","Drilling","Blasting","None"],a:0}
+];
+
+let score = 0;
+let quizDiv = document.getElementById("quiz");
+
+questions.forEach((item, index) => {
+ let div = document.createElement("div");
+ div.classList.add("question");
+ div.innerHTML = `<b>${index+1}. ${item.q}</b><br>`;
+ 
+ item.o.forEach((opt,i)=>{
+  let btn=document.createElement("button");
+  btn.innerText=opt;
+  
+  btn.onclick=()=>{
+   if(i===item.a){
+    btn.classList.add("correct");
+    score++;
+   } else {
+    btn.classList.add("wrong");
+   }
+   document.getElementById("score").innerText="Score: "+score;
+  }
+  div.appendChild(btn);
+ });
+ quizDiv.appendChild(div);
+});
+
+// Timer
+let time = 300;
+let timer = setInterval(()=>{
+ time--;
+ document.getElementById("timer").innerText = "Time: " + time + "s";
+ if(time<=0){
+  clearInterval(timer);
+  alert("Time Up! Score: " + score);
+ }
+},1000);
+
+</script>
+
+</body>
+</html>
